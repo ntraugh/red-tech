@@ -50,7 +50,7 @@ const Table = () => {
         getOrders()
     }, [])
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 400, width: '100%', boxShadow: "6px 6px 10px black" }}>
       <DataGrid
       rows={rows}
       columns={columns}

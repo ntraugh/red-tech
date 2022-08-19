@@ -1,10 +1,14 @@
 import * as React from 'react';
 import Table from './components/Table';
+import TableSearch from './components/TableSearch';
 
 function App() {
  
   return (
-    <Table />
+    <>
+      <TableSearch />
+      <Table />
+    </>
   );
 }
 
