@@ -33,7 +33,9 @@ const columns = [
 
 const Table = () => {
     const [tableData, setTableData] = useState([])
-
+    const [rows, setRows] = useState([])
+    const [deletedRows, setDeletedRows] = useState([])
+    
     useEffect(() => {
             fetch("https://red-candidate-web.azurewebsites.net/api/Orders/", { headers: { "ApiKey": "b7b77702-b4ec-4960-b3f7-7d40e44cf5f4"}})
             .then((res) => res.json())

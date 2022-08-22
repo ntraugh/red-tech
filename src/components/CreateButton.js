@@ -24,11 +24,12 @@ const orderTypes = [
   ]
 
 const CreateButton = () => {
+    // using state for handling the opening and closing of the modal and dropdown menu
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
-    const [orderType, setOrderType] = useState([])
-    const [data, setData] = useState({ createdByUserName: "", orderType: [], customerName: ""})
+    const [isOrderType, setOrderType] = useState("")
+    const [data, setData] = useState({ createdByUserName: "", customerName: ""})
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -48,26 +49,27 @@ const CreateButton = () => {
         const userData = {
           CreatedByUserName: data.createdByUserName,
           CustomerName: data.customerName,
-          OrderType: orderType
+          OrderType: isOrderType
         };
         axios.post("https://red-candidate-web.azurewebsites.net/api/Orders/", userData, 
         { headers: 
-            { "ApiKey": "b7b77702-b4ec-4960-b3f7-7d40e44cf5f4"}} )
+            { "ApiKey": "b7b77702-b4ec-4960-b3f7-7d40e44cf5f4",
+              "Content-Type": "application/json"}} )
         .then((response) => {
           console.log(response.status);
           console.log(response.data);
         });
       };
-  
+    
 
   return (
     <>
-        <Button variant="contained" style={{"margin": "1rem"}} onClick={handleOpen}>
+        <Button variant="contained" style={{"margin": "1rem", "marginBottom": "2rem"}} onClick={handleOpen}>
             Create Order
         </Button>
         <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Create Order</DialogTitle>
-        <DialogContent>
+        <DialogContent onSubmit={handleSubmit}>
           <DialogContentText>
            Please fill out all applicable fields. A unique ID will be generated for your order!
           </DialogContentText>
@@ -77,20 +79,19 @@ const CreateButton = () => {
             id="name"
             label="Name"
             name='createdByUserName'
-            type="email"
+            type="name"
             value={data.createdByUserName}
             fullWidth
             variant="standard"
             onChange={handleChange}
 
           />
-          <FormControl sx={{ m: 1, width: 300 }}  style={{"marginTop": "20px"}} onSubmit={handleSubmit}>
+          <FormControl sx={{ m: 1, width: 300 }}  style={{"marginTop": "20px"}}>
         <InputLabel id="demo-multiple-name-label">Order Type</InputLabel>
           <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          multiple
-          value={orderType}
+          value={isOrderType}
           onChange={handleOrder}
           name="orderType"
           input={<OutlinedInput label="Choose your order type." />}
@@ -114,7 +115,7 @@ const CreateButton = () => {
             name='customerName'
             label="Customer"
             value={data.customerName}
-            type="email"
+            type="name"
             fullWidth
             variant="standard"
             onChange={handleChange}

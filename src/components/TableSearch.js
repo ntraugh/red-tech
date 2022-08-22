@@ -19,52 +19,54 @@ const orderTypes = [
 ]
 
 const TableSearch = () => {
-    // using state for handling the opening and closing of the modal and dropdown menu
+    // using state to set our orderType to an empty array
     const [orderType, setOrderType] = useState([])
     
 
     const handleChange = (e) => {
-      const { target: { value }, } = e
+      const value = e.target.value
       setOrderType( typeof value === "string" ? value.split(",") : value)
       console.log(value)
     }
 
   return (
     <>
-        <TextField label="Customer Search"
-          id="outlined-size-small"
-          defaultValue="Customer Search"
-          size="small" 
-          style={{"marginTop": "16px"}}/>
-        <SearchIcon style={{"color": "white", "backgroundColor": "#1976d2", "borderRadius": "2px", "marginTop": "24px"}}/>
-
+      <div style={{"alignItems": "center"}}>
+          <TextField label="Search by Id"
+            id="outlined-size-small"
+            defaultValue="Customer Search"
+            size="small" 
+            style={{"marginTop": "16px"}}/>
+          <Button variant="contained" style={{"marginBottom": "10px"}}>
+          <SearchIcon style={{"color": "white", "borderRadius": "2px", "width": "30"}}/>
+          </Button>
         {/* CREATE MODAL HERE FOR CREATE ORDER BUTTON*/}
         <CreateButton />
-        <Button variant="contained" style={{"marginRight": "2rem"}} startIcon={<DeleteIcon />}>
-            Delete Selected
+        <Button variant="contained" style={{"marginBottom": "1rem"}} startIcon={<DeleteIcon />}>
+            Delete Order
         </Button>
         {/* Dropdown form */}
         <FormControl sx={{ m: 1, width: 250 }}>
         <InputLabel id="demo-multiple-name-label">Order Type</InputLabel>
-        <Select
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
-          multiple
-          value={orderType}
-          onChange={handleChange}
-          input={<OutlinedInput label="Name" />}
-        >
-          {orderTypes.map((order) => (
-            <MenuItem
-              key={order}
-              value={order}
+          <Select
+            labelId="demo-multiple-name-label"
+            id="demo-multiple-name"
+            multiple
+            value={orderType}
+            onChange={handleChange}
+            input={<OutlinedInput label="Name" />}
             >
-              {order}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    
+            {orderTypes.map((order) => (
+              <MenuItem
+                key={order}
+                value={order}
+              >
+                {order}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
        
     </>
   )
