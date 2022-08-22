@@ -40,15 +40,18 @@ const Table = () => {
             .then((res) => setTableData(res))
     }, [])
   return (
-    <div style={{ height: 400, width: '100%', boxShadow: "8px 14px 20px" }}>
-      <DataGrid
-      rows={tableData}
-      columns={columns}
-      pageSize={5}
-      getRowId={(row) => row.orderId}
-      rowsPerPageOptions={[5]}
-      checkboxSelection/>
-    </div>
+    <>
+      <TableSearch/>
+      <div style={{ height: 400, width: '100%', boxShadow: "8px 14px 20px" }}>
+        <DataGrid
+        rows={tableData}
+        columns={columns}
+        pageSize={5}
+        getRowId={(row) => row.orderId}
+        rowsPerPageOptions={[5]}
+        checkboxSelection/>
+      </div>
+    </>
   )
 }
 

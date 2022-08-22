@@ -9,6 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import CreateButton from './CreateButton';
 
 const orderTypes = [
   "Standard",
@@ -19,15 +20,14 @@ const orderTypes = [
 
 const TableSearch = () => {
     // using state for handling the opening and closing of the modal and dropdown menu
-    const [open, setOpen] = useState(false)
     const [orderType, setOrderType] = useState([])
-    const handleOpen = () => setOpen(true)
-    const handleClose = () => setOpen(false)
+    
 
     const handleChange = (e) => {
       const { target: { value }, } = e
       setOrderType( typeof value === "string" ? value.split(",") : value)
-      console.log(e.target.value)
+      console.log(value)
+      // check if value is equal to any ordertype then only display those orders from that ordertype
     }
 
   return (
@@ -40,9 +40,7 @@ const TableSearch = () => {
         <SearchIcon style={{"color": "white", "backgroundColor": "#1976d2", "borderRadius": "2px", "marginTop": "24px"}}/>
 
         {/* CREATE MODAL HERE FOR CREATE ORDER BUTTON*/}
-        <Button variant="contained" style={{"margin": "1rem"}} onClick={handleOpen}>
-            Create Order
-        </Button>
+        <CreateButton />
         <Button variant="contained" style={{"marginRight": "2rem"}} startIcon={<DeleteIcon />}>
             Delete Selected
         </Button>
