@@ -27,7 +27,6 @@ const TableSearch = () => {
       const { target: { value }, } = e
       setOrderType( typeof value === "string" ? value.split(",") : value)
       console.log(value)
-      // check if value is equal to any ordertype then only display those orders from that ordertype
     }
 
   return (
@@ -45,7 +44,7 @@ const TableSearch = () => {
             Delete Selected
         </Button>
         {/* Dropdown form */}
-        <FormControl sx={{ m: 1, width: 300 }}>
+        <FormControl sx={{ m: 1, width: 250 }}>
         <InputLabel id="demo-multiple-name-label">Order Type</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
