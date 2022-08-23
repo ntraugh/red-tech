@@ -30,6 +30,7 @@ const CreateButton = () => {
     const handleClose = () => setOpen(false)
     const [isOrderType, setOrderType] = useState("")
     const [data, setData] = useState({ createdByUserName: "", customerName: ""})
+    const [status, setStatus] = useState(null)
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -60,6 +61,14 @@ const CreateButton = () => {
           console.log(response.data);
         });
       };
+
+    useEffect(() => {
+      async function deleteOrder() {
+        await fetch("https://red-candidate-web.azurewebsites.net/api/Orders/delete", {method: "DELETE"})
+        setStatus("Delete Successful")
+      }
+      deleteOrder()
+    }, [])
     
 
   return (
@@ -69,7 +78,7 @@ const CreateButton = () => {
         </Button>
         <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Create Order</DialogTitle>
-        <DialogContent onSubmit={handleSubmit}>
+        <DialogContent>
           <DialogContentText>
            Please fill out all applicable fields. A unique ID will be generated for your order!
           </DialogContentText>
