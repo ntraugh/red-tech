@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import TableSearch from './TableSearch';
 
 
-
+// setting up our mui data grid columns
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'orderId', headerName: 'Order ID', width: 300 },
@@ -32,9 +32,10 @@ const columns = [
 
 
 const Table = () => {
+  // using state for our table data
     const [tableData, setTableData] = useState([])
     
-    
+    // fetch request to display data on table, successfull!
     useEffect(() => {
             fetch("https://red-candidate-web.azurewebsites.net/api/Orders/", { headers: { "ApiKey": "b7b77702-b4ec-4960-b3f7-7d40e44cf5f4"}})
             .then((res) => res.json())

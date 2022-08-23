@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from "../images/red-technologies.png"
+// React icons
 import {FaRegSun, FaRegUserCircle} from "react-icons/fa"
 const Header = () => {
   return (

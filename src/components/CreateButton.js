@@ -37,7 +37,6 @@ const CreateButton = () => {
         const value = e.target.value
         setData( {...data, [e.target.name]: value})
         console.log(value)
-        // check if value is equal to any ordertype then only display those orders from that ordertype
       }
     const handleOrder = (e) => {
         const value = e.target.value
@@ -45,6 +44,7 @@ const CreateButton = () => {
         console.log(value)
       }
 
+      // attempted to use axios for post request, but getting a bad request in console after submitting form
     const handleSubmit = (e) => {
         e.preventDefault();
         const userData = {
@@ -61,7 +61,8 @@ const CreateButton = () => {
           console.log(response.data);
         });
       };
-
+      
+      // tried using useEffect for delete functionality but also got errors in console on page load
     useEffect(() => {
       async function deleteOrder() {
         await fetch("https://red-candidate-web.azurewebsites.net/api/Orders/delete", {method: "DELETE"})
@@ -133,6 +134,7 @@ const CreateButton = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
+          {/* handleSubmit here or on the top of the dialogue form? */}
           <Button onClick={handleSubmit}>Create Order</Button>
         </DialogActions>
       </Dialog>

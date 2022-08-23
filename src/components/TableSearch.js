@@ -21,7 +21,7 @@ const TableSearch = () => {
     // using state to set our orderType to an empty array
     const [orderType, setOrderType] = useState([])
     
-
+  // grabbing the value of our order type
     const handleChange = (e) => {
       const value = e.target.value
       setOrderType( typeof value === "string" ? value.split(",") : value)
@@ -55,6 +55,7 @@ const TableSearch = () => {
             onChange={handleChange}
             input={<OutlinedInput label="Name" />}
             >
+              {/* map through our order types to display in the dropdown */}
             {orderTypes.map((order) => (
               <MenuItem
                 key={order}
